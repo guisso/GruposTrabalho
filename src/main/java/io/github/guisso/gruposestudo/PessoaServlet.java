@@ -2,6 +2,8 @@ package io.github.guisso.gruposestudo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,12 +66,56 @@ public class PessoaServlet extends HttpServlet {
             p2t2.setNumero(5588888888L);
             
             // Grupos
+            Grupo g1 = new Grupo();
+            g1.setNome("Grupo Trabalho 1");
+            g1.setAtivo(true);
+            
+            Grupo g2 = new Grupo();
+            g2.setNome("Grupo Trabalho 2");
+            g2.setAtivo(false);
             
             // Cadastros
+            Cadastro p1g1 = new Cadastro();
+            p1g1.setAtivo(true);
+            p1g1.setDataHoraCadastro(LocalDateTime.of(2023, 3, 22, 12, 0));
+            p1g1.setGrupo(g1);
+            
+            Cadastro p1g2 = new Cadastro();
+            p1g2.setAtivo(true);
+            p1g2.setDataHoraCadastro(LocalDateTime.of(2023, 2, 22, 12, 0));
+            p1g2.setGrupo(g2);
+            
+            Cadastro p2g2 = new Cadastro();
+            p2g2.setAtivo(true);
+            p2g2.setDataHoraCadastro(LocalDateTime.of(2023, 3, 22, 12, 0));
+            p2g2.setGrupo(g2);
             
             // Pessoas
+            Pessoa p1 = new Pessoa();
+            p1.setNome("Ana");
+            p1.setNascimento(LocalDate.of(2000, 3, 1));
             
+            p1.setEndereco(e1);
             
+            p1.getTelefones().add(p1t1);
+            p1.getTelefones().add(p1t2);
+            p1.getTelefones().add(p1t3);
+            
+            p1.getCadastros().add(p1g1);
+            p1.getCadastros().add(p1g2);
+            
+            Pessoa p2 = new Pessoa();
+            p2.setNome("Beatriz");
+            p2.setNascimento(LocalDate.of(1990, 3, 1));
+            
+            p2.setEndereco(e2);
+            
+            p2.getTelefones().add(p2t1);
+            p2.getTelefones().add(p2t2);
+            
+            p2.getCadastros().add(p2g2);
+            
+            // TODO Salvar as pessoas
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
