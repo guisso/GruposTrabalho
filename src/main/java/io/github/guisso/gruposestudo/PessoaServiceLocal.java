@@ -1,5 +1,6 @@
 package io.github.guisso.gruposestudo;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -10,5 +11,7 @@ import javax.ejb.Local;
 public interface PessoaServiceLocal {
 
     void salvar(Pessoa pessoa);
+
+    List<Pessoa> buscarTodasPessoas();
     
 }
