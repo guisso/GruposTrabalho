@@ -48,6 +48,20 @@ public class PessoaServlet extends HttpServlet {
             e3.setNumero(55555);
             
             // Telefones
+            Telefone p1t1 = new Telefone();
+            p1t1.setNumero(1188888888L);
+            
+            Telefone p1t2 = new Telefone();
+            p1t2.setNumero(2288888888L);
+            
+            Telefone p1t3 = new Telefone();
+            p1t3.setNumero(3388888888L);
+            
+            Telefone p2t1 = new Telefone();
+            p2t1.setNumero(4488888888L);
+            
+            Telefone p2t2 = new Telefone();
+            p2t2.setNumero(5588888888L);
             
             // Grupos
             
