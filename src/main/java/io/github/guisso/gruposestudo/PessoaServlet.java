@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -123,6 +124,13 @@ public class PessoaServlet extends HttpServlet {
             pessoaService.salvar(p1);
             pessoaService.salvar(p2);
             
+            // Testes com JPQL
+            
+            // Buscar todas as pessoas
+            List<Pessoa> todasPessoas 
+                    = pessoaService.buscarTodasPessoas();
+            
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -130,6 +138,13 @@ public class PessoaServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Operação realizada com sucesso</h1>");
+            
+            out.println("<ul>");
+            for (Pessoa pessoa : todasPessoas) {
+                out.println("<li>" + pessoa + "</li>");
+            }
+            out.println("</ul>");
+            
             out.println("</body>");
             out.println("</html>");
         }
