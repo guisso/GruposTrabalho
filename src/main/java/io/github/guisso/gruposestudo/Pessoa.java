@@ -51,6 +51,7 @@ public class Pessoa implements Serializable {
 
     public Pessoa() {
         telefones = new ArrayList<>();
+        cadastros = new ArrayList<>();
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
@@ -76,6 +77,7 @@ public class Pessoa implements Serializable {
 
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
+        // TODO Calcular a idade
     }
 
     public Short getIdade() {
