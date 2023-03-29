@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,9 @@ import javax.transaction.Transactional;
 @Transactional
 @WebServlet(name = "PessoaServlet", urlPatterns = {"/PessoaServlet"})
 public class PessoaServlet extends HttpServlet {
+    
+    @Inject
+    private PessoaServiceLocal pessoaService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -115,7 +119,9 @@ public class PessoaServlet extends HttpServlet {
             
             p2.getCadastros().add(p2g2);
             
-            // TODO Salvar as pessoas
+            // Salvamento via beans de sessão
+            pessoaService.salvar(p1);
+            pessoaService.salvar(p2);
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -123,7 +129,7 @@ public class PessoaServlet extends HttpServlet {
             out.println("<title>Servlet PessoaServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PessoaServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Operação realizada com sucesso</h1>");
             out.println("</body>");
             out.println("</html>");
         }
