@@ -2,6 +2,7 @@ package io.github.guisso.gruposestudo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,15 +13,52 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 /**
  *
  * @author Luis Guisso &lt;luis.guisso at ifnmg.edu.br&gt;
  */
 @Entity
+//<editor-fold defaultstate="collapsed" desc="Queries">
+@NamedQueries({
+    @NamedQuery(
+            name = "Pessoa.findAll",
+            query = "SELECT p FROM Pessoa p"
+    ),
+    @NamedQuery(
+            name = "Pessoa.nameAndAge",
+            query = "SELECT p.nome, p.idade FROM Pessoa p"
+    ),
+        // TODO Resolver falha na JPQL
+//    @NamedQuery(
+//            name = "Pessoa.nameAndAgeDto",
+//            query = "SELECT new io.github.guisso.gruposestudo.PessoaNomeIdadeDto(p.nome, p.idade) FROM Pessoa p"
+//    )
+    @NamedQuery(
+            name = "Pessoa.maiores25",
+            query = "SELECT p "
+                    + "FROM Pessoa p "
+                    + "WHERE p.idade > 25"
+    ),
+    @NamedQuery(
+            name = "Pessoa.maiores",
+            query = "SELECT p "
+                    + "FROM Pessoa p "
+                    + "WHERE p.idade > :idadeMinima"
+    ),
+    @NamedQuery(
+            name = "Pessoa.idadeEntre",
+            query = "SELECT p "
+                    + "FROM Pessoa p "
+                    + "WHERE p.idade > :idadeMinima "
+                    + "AND p.idade < :idadeMaxima"
+    ),
+})
+//</editor-fold>
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +73,7 @@ public class Pessoa implements Serializable {
     @Column(nullable = false)
     private LocalDate nascimento;
 
-    @Transient
+//    @Transient
     private Short idade;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -77,7 +115,8 @@ public class Pessoa implements Serializable {
 
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
-        // TODO Calcular a idade
+        idade = (short) nascimento.until(LocalDate.now(), 
+                ChronoUnit.YEARS);
     }
 
     public Short getIdade() {

@@ -13,5 +13,15 @@ public interface PessoaServiceLocal {
     void salvar(Pessoa pessoa);
 
     List<Pessoa> buscarTodasPessoas();
+
+    List<Object[]> buscarNomesIdades();
+
+    List<PessoaNomeIdadeDto> buscarNomesIdadesDto();
+
+    List<Pessoa> localizarMaiores25();
+
+    List<Pessoa> localizarMaioresQue(Short idadeMinima);
+
+    List<Pessoa> localizarFaixaIdade(Short idadeMinima, Short idadeMaxima);
     
 }
