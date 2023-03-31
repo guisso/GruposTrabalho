@@ -33,29 +33,28 @@ import javax.persistence.OneToOne;
             name = "Pessoa.nameAndAge",
             query = "SELECT p.nome, p.idade FROM Pessoa p"
     ),
-        // TODO Resolver falha na JPQL
-//    @NamedQuery(
-//            name = "Pessoa.nameAndAgeDto",
-//            query = "SELECT new io.github.guisso.gruposestudo.PessoaNomeIdadeDto(p.nome, p.idade) FROM Pessoa p"
-//    )
+    @NamedQuery(
+            name = "Pessoa.nameAndAgeDto",
+            query = "SELECT new io.github.guisso.gruposestudo.PessoaNomeIdadeDto(p.nome, p.idade) FROM Pessoa p"
+    ),
     @NamedQuery(
             name = "Pessoa.maiores25",
             query = "SELECT p "
-                    + "FROM Pessoa p "
-                    + "WHERE p.idade > 25"
+            + "FROM Pessoa p "
+            + "WHERE p.idade > 25"
     ),
     @NamedQuery(
             name = "Pessoa.maiores",
             query = "SELECT p "
-                    + "FROM Pessoa p "
-                    + "WHERE p.idade > :idadeMinima"
+            + "FROM Pessoa p "
+            + "WHERE p.idade > :idadeMinima"
     ),
     @NamedQuery(
             name = "Pessoa.idadeEntre",
             query = "SELECT p "
-                    + "FROM Pessoa p "
-                    + "WHERE p.idade > :idadeMinima "
-                    + "AND p.idade < :idadeMaxima"
+            + "FROM Pessoa p "
+            + "WHERE p.idade > :idadeMinima "
+            + "AND p.idade < :idadeMaxima"
     ),
 })
 //</editor-fold>
@@ -115,7 +114,7 @@ public class Pessoa implements Serializable {
 
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
-        idade = (short) nascimento.until(LocalDate.now(), 
+        idade = (short) nascimento.until(LocalDate.now(),
                 ChronoUnit.YEARS);
     }
 
