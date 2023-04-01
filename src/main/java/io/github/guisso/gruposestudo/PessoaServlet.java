@@ -129,9 +129,13 @@ public class PessoaServlet extends HttpServlet {
             List<Pessoa> todasPessoas
                     = pessoaService.buscarTodasPessoas();
 
-            // Buscara nomes e idades
+            // Buscar nomes e idades
             List<Object[]> nomesIdadesPessoas
                     = pessoaService.buscarNomesIdades();
+            
+            // Buscar nomes e idades via DTO
+            List<PessoaNomeIdadeDto> nomesIdadesPessoasDto
+                    = pessoaService.buscarNomesIdadesDto();
 
             //Buscar Pessoas com mais que 25 anos
             List<Pessoa> pessoasMaiores25
@@ -168,6 +172,13 @@ public class PessoaServlet extends HttpServlet {
             out.println("<ul>");
             for (Object[] o : nomesIdadesPessoas) {
                 out.println("<li>" + o[0] + "," + o[1] + "</li>");
+            }
+            out.println("</ul>");
+            
+            out.println("<h2>Projeção (DTO)</h2>");
+            out.println("<ul>");
+            for (PessoaNomeIdadeDto o : nomesIdadesPessoasDto) {
+                out.println("<li>" + o.getNome() + "," + o.getIdade() + "</li>");
             }
             out.println("</ul>");
 
