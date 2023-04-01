@@ -40,10 +40,9 @@ public class PessoaService implements PessoaServiceLocal {
 
     @Override
     public List<PessoaNomeIdadeDto> buscarNomesIdadesDto() {
-        return null;
-        // TODO Resolver falha na JPQL
-//        return em.createNamedQuery("Pessoa.nameAndAgeDto",
-//                PessoaNomeIdadeDto.class);
+        return em.createNamedQuery("Pessoa.nameAndAgeDto",
+                PessoaNomeIdadeDto.class)
+                .getResultList();
     }
 
     @Override
