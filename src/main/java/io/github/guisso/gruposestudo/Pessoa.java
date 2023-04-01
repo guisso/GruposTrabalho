@@ -53,8 +53,8 @@ import javax.persistence.OneToOne;
             name = "Pessoa.idadeEntre",
             query = "SELECT p "
             + "FROM Pessoa p "
-            + "WHERE p.idade > :idadeMinima "
-            + "AND p.idade < :idadeMaxima"
+            + "WHERE p.idade >= :idadeMinima "
+            + "AND p.idade <= :idadeMaxima"
     ),
 })
 //</editor-fold>
